@@ -1,9 +1,13 @@
 # YOU DON'T KNOW JS (this와 객체 프로토타입, 비동기와 성능)
 
+## 1장
+
 `this`
 
 - 렉시컬 스코프 안에 있는 뭔가를 this 레퍼런스로 참조하기란 애당초 가능하지 않다.
 - 어떤 함수를 호출하면 활성화 레코드, 즉 싱행 컨텍스트가 만들어진다. 여기엔 함수가 호출된 근원 (Call stack)과 호출방법, 전달된 인자등의 정보가 담겨있다. this 레퍼런스는 그중 하나로, 함수가 실행되는 동안 이용할 수 있다.
+
+## 2장
 
 `this 바인딩방법`
 
@@ -27,3 +31,30 @@
   - 새로 생성된 객체의 [[Prototype]] 이 연결된다.
   - 새로 생성된 객체는 해당함수 호출시 this로 바인딩 된다.
   - 이 함수가 자신의 또 다른 객체를 반환하지 않는 한 new와 함께 호출된 함수는 자동으로 생성된 객체를 반환한다.
+
+### 3장
+
+`내장객체(생성자 형식)`
+
+- https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects
+- 자바스크립트 엔진은 상황에 맞게 문자열 원시 값을 내장객체(new String, new Number)로 자동 강제 변환하므로 명시적으로 객체를 생성할 일은 없다.
+- 따라서, 생성자 형식은 지양하고 리터럴 형식을 사용하라고 적극권장 (new String('ddd') 와 같이 많이 사용안함)
+
+`Object 불변성`
+
+- Object.seal() (프로퍼티들의 configurable false로 만듬, 하지만 기존 프로퍼티들 값 수정가능 )
+- Object.freeze()
+  - (위의 seal 보다 강력한조치, 가장높은 불변성 처리, 기존 프로퍼티 값 수정도 불가, 하지만 레퍼런스로 참조하고있는 프로퍼티 갑있다면 영향 x)
+  - (재귀로 순회하며 하위 객체도 freeze, 따라서 유의해야함)
+
+`객체 property 존재 확인`
+
+- in 연산자 (prototype 연쇄로 돌며 찾음)
+- hasOwnProperty 확인 (프로퍼티가 객체에 있는지만 판단, prototype 연쇄로 찾지는 않음)
+
+`for of`
+
+- 배열에서 index 순회가 아닌 값 자체로의 순회가 가능해짐
+- ES6부터
+- @@iterator라는 내부 함수가 있어야함 (value[Symbol.iterator]())
+- 일반 객체는 불가
