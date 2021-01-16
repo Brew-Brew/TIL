@@ -58,3 +58,23 @@
 - ES6부터
 - @@iterator라는 내부 함수가 있어야함 (value[Symbol.iterator]())
 - 일반 객체는 불가
+
+### 5장
+
+`Object.create 와 new ~~()`
+
+- 둘 다 새 객체를 만들고, 프로토타입을 상속한다는 점에서는 동일하다.
+- create로 객체를 만들었을때는 생성자를 호출하지않는다.
+
+`[[Prototype]]`
+
+- 자바스크립트 객체는 `[[Prototype]]`이라는 내부 프로퍼티가 있고 다른 객체를 참조하는 단순 레퍼런스로 사용
+- a = new Foo()를 실행하면 생긴 객체 a(1)의 `[[Prototype]]` 이 Foo.prototype 객체 (2)와 링크로 연결이 맺어진다.
+- 어떤 클래스로부터 작동을 복사하여 다른 객체에 넣는것이 아니라 링크로 두 객체를 연결한다.
+- https://poiemaweb.com/js-prototype#2-prototype-vs-prototype-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0
+
+`prototype vs [[Prototype]]`
+
+- https://poiemaweb.com/js-prototype#2-prototype-vs-prototype-%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0 참고
+- 함수 객체는 일반 객체와는 달리 prototype 프로퍼티도 소유하게 된다.
+- 주의해야 할 것은 prototype 프로퍼티는 프로토타입 객체를 가리키는 [[Prototype]] 인터널 슬롯은 다르다는 것이다. prototype 프로퍼티와 [[Prototype]]은 모두 프로토타입 객체를 가리키지만 관점의 차이가 있다.
